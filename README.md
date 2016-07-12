@@ -6,6 +6,9 @@ All the credits go to [onnimonni](https://github.com/onnimonni) - i did not add 
 
 **Do not derive from this image, rather use [onnimonni/docker-unison](https://github.com/onnimonni/docker-unison)- The only pupose this image has is docker-sync**
 
+## Documetation
+
+You shall not use this image, all the docs are over at [onnimonni/docker-unison](https://github.com/onnimonni/docker-unison)
 ## Credits
 Thanks for [onnimonni](https://github.com/onnimonni) and [leighmcculloch](https://github.com/leighmcculloch/docker-unison) for all their work!
 
