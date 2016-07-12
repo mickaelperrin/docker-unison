@@ -1,5 +1,7 @@
 FROM alpine:edge
-MAINTAINER Onni Hakala <onni.hakala@geniem.com>
+# This is the real maintainer
+# MAINTAINER Onni Hakala <onni.hakala@geniem.com>
+MAINTAINER Eugen Mayer <eugen.mayer@kontextwork.com>
 
 ARG UNISON_VERSION=2.48.4
 
