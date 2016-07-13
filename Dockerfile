@@ -6,7 +6,7 @@ MAINTAINER Eugen Mayer <eugen.mayer@kontextwork.com>
 ARG UNISON_VERSION=2.48.4
 ARG FSWATCH_VERSION=1.9.2
 
-RUN apk add --update build-base curl bash && \
+RUN apk add --update build-base curl bash supervisor && \
     apk add --update-cache --repository http://dl-4.alpinelinux.org/alpine/edge/testing/ ocaml emacs && \
     curl -L https://github.com/bcpierce00/unison/archive/$UNISON_VERSION.tar.gz | tar zxv -C /tmp && \
     cd /tmp/unison-${UNISON_VERSION} && \
@@ -28,7 +28,19 @@ ENV TZ="Europe/Helsinki" \
     HOME="/root"
 
 # Install unison server script
-COPY entrypoint.sh /entrypoint.sh
+ADD entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+ADD unison-start.sh /unison-start.sh
+RUN chmod +x /unison-start.sh
+ADD fswatch.sh /fswatch.sh
+RUN chmod +x /fswatch.sh
+
+RUN mkdir -p /etc/supervisor/conf.d
+
+COPY supervisord.conf /etc/supervisord.conf
+COPY supervisor.fswatch.conf /etc/supervisor/conf.d/supervisor.fswatch.conf
+COPY supervisor.unison.conf /etc/supervisor/conf.d/supervisor.unison.conf
 
 EXPOSE 5000
 ENTRYPOINT ["/entrypoint.sh"]
+CMD ["supervisord"]
