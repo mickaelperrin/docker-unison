@@ -31,8 +31,8 @@ ENV TZ="Europe/Helsinki" \
 # Install unison server script
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
-ADD unison-start.sh /unison-start.sh
-RUN chmod +x /unison-start.sh
+ADD unison.sh /unison.sh
+RUN chmod +x /unison.sh
 ADD fswatch.sh /fswatch.sh
 RUN chmod +x /fswatch.sh
 
