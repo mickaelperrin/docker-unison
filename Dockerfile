@@ -1,6 +1,7 @@
 FROM alpine:edge
 # This is the real maintainer
 # MAINTAINER Onni Hakala <onni.hakala@geniem.com>
+# MAINTAINER Mickaël Perrin <dev@mickaelperrin.fr>
 MAINTAINER Eugen Mayer <eugen.mayer@kontextwork.com>
 
 ARG UNISON_VERSION=2.48.4
