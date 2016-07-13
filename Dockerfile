@@ -28,20 +28,18 @@ ENV TZ="Europe/Helsinki" \
     UNISON_DIR="/data" \
     HOME="/root"
 
-# Install unison server script
-RUN mkdir -p /docker-entrypoint.d
-ADD entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
-ADD unison.sh /unison.sh
-RUN chmod +x /unison.sh
-ADD fswatch.sh /fswatch.sh
-RUN chmod +x /fswatch.sh
-
-RUN mkdir -p /etc/supervisor/conf.d
-
+COPY unison.sh /unison.sh
+COPY fswatch.sh /fswatch.sh
+COPY entrypoint.sh /entrypoint.sh
 COPY supervisord.conf /etc/supervisord.conf
 COPY supervisor.fswatch.conf /etc/supervisor/conf.d/supervisor.fswatch.conf
 COPY supervisor.unison.conf /etc/supervisor/conf.d/supervisor.unison.conf
+
+RUN mkdir -p /docker-entrypoint.d \
+ && chmod +x /entrypoint.sh \
+ && chmod +x /unison.sh \
+ && chmod +x /fswatch.sh \
+ && mkdir -p /etc/supervisor/conf.d
 
 EXPOSE 5000
 ENTRYPOINT ["/entrypoint.sh"]
