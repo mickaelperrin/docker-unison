@@ -29,6 +29,7 @@ ENV TZ="Europe/Helsinki" \
     HOME="/root"
 
 # Install unison server script
+RUN mkdir -p /docker-entrypoint.d
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 ADD unison.sh /unison.sh
