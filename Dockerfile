@@ -16,8 +16,9 @@ RUN apk add --update build-base curl bash supervisor && \
     cp src/unison src/unison-fsmonitor /usr/local/bin && \
     curl -L https://github.com/emcrisostomo/fswatch/releases/download/${FSWATCH_VERSION}/fswatch-${FSWATCH_VERSION}.tar.gz | tar zxv -C /tmp && \
     cd /tmp/fswatch-${FSWATCH_VERSION} && \
-    ./configure && make && make install && \
-    apk del curl emacs && \
+    ./configure && make && make install && make clean && make distclean && \
+    apk del curl emacs build-base ocaml && \
+    apk --update add libgcc libstdc++ && \
     rm -rf /var/cache/apk/* && \
     rm -rf /tmp/unison-${UNISON_VERSION} && \
     rm -rf /tmp/fswatch-${FSWATCH_VERSION}
