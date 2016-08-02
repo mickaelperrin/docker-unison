@@ -7,7 +7,7 @@ MAINTAINER Eugen Mayer <eugen.mayer@kontextwork.com>
 ARG UNISON_VERSION=2.48.4
 ARG FSWATCH_VERSION=1.9.2
 
-RUN apk add --update build-base curl bash supervisor && \
+RUN apk add --update build-base curl bash supervisor tzdata && \
     apk add --update-cache --repository http://dl-4.alpinelinux.org/alpine/edge/testing/ ocaml emacs && \
     curl -L https://github.com/bcpierce00/unison/archive/$UNISON_VERSION.tar.gz | tar zxv -C /tmp && \
     cd /tmp/unison-${UNISON_VERSION} && \
